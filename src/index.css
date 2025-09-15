@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 330 50% 96%;
+    --foreground: 340 50% 15%;
+
+    --card: 340 70% 98%;
+    --card-foreground: 340 50% 15%;
+
+    --popover: 340 70% 98%;
+    --popover-foreground: 340 50% 15%;
+
+    --primary: 315 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 280 60% 85%;
+    --secondary-foreground: 340 50% 20%;
+
+    --muted: 320 30% 90%;
+    --muted-foreground: 340 25% 50%;
+
+    --accent: 45 90% 70%;
+    --accent-foreground: 340 50% 15%;
+
+    --birthday-pink: 330 80% 70%;
+    --birthday-purple: 280 70% 65%;
+    --birthday-gold: 45 90% 65%;
+    --birthday-light: 340 70% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 320 25% 88%;
+    --input: 320 25% 88%;
+    --ring: 315 80% 60%;
+
+    --radius: 1rem;
+
+    --gradient-birthday: linear-gradient(135deg, hsl(var(--birthday-pink)), hsl(var(--birthday-purple)));
+    --gradient-sparkle: linear-gradient(45deg, hsl(var(--birthday-gold)), hsl(var(--accent)));
+    --gradient-background: linear-gradient(180deg, hsl(var(--background)), hsl(var(--birthday-light)));
+
+    --shadow-magical: 0 20px 40px -12px hsl(var(--birthday-pink) / 0.4);
+    --shadow-sparkle: 0 8px 32px hsl(var(--birthday-gold) / 0.6);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+    background: var(--gradient-background);
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .birthday-button {
+    @apply px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300;
+    background: var(--gradient-birthday);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-magical);
+    transform: translateY(0);
+  }
+  
+  .birthday-button:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 25px 50px -12px hsl(var(--birthday-pink) / 0.6);
+  }
+
+  .sparkle-button {
+    @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
+    background: var(--gradient-sparkle);
+    color: hsl(var(--accent-foreground));
+    box-shadow: var(--shadow-sparkle);
+  }
+
+  .sparkle-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 40px hsl(var(--birthday-gold) / 0.8);
+  }
+
+  .floating-heart {
+    @apply absolute animate-pulse;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .floating-sparkle {
+    @apply absolute;
+    animation: sparkle 4s linear infinite;
+  }
+
+  .birthday-card {
+    @apply bg-card rounded-3xl p-8 backdrop-blur-sm;
+    background: linear-gradient(135deg, hsl(var(--card) / 0.9), hsl(var(--birthday-light) / 0.8));
+    box-shadow: var(--shadow-magical);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .popup-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .popup-content {
+    @apply bg-card rounded-3xl p-8 max-w-md w-full;
+    background: var(--gradient-birthday);
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 30px 60px -12px hsl(var(--birthday-pink) / 0.8);
+    animation: popupIn 0.5s ease-out;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(5deg); }
+    50% { transform: translateY(-40px) rotate(-5deg); }
+    75% { transform: translateY(-20px) rotate(3deg); }
+  }
+
+  @keyframes sparkle {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    25% { transform: scale(1) rotate(90deg); opacity: 1; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+    75% { transform: scale(0.8) rotate(270deg); opacity: 0.6; }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+  }
+
+  @keyframes popupIn {
+    0% { transform: scale(0.8) translateY(20px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .title-gradient {
+    background: var(--gradient-birthday);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
